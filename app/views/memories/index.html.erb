@@ -1,0 +1,36 @@
+<%- model_class = Memory -%>
+<div class="page-header">
+  <h1>日記一覧</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>題名</th>
+      <th>本文</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @memories.each do |memory| %>
+      <tr>
+        <td><%= memory.date %></td>
+        <td><%= memory.title %></td>
+        <td><%= memory.text %></td>
+                <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_memory_path(memory), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      memory_path(memory),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '本当に削除しますか？')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_memory_path,
+            :class => 'btn btn-primary' %>

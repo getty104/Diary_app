@@ -1,0 +1,5 @@
+<%- model_class = Memory -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', '日記を%{model}を編集'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>
